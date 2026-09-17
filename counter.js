@@ -1,10 +1,10 @@
 (function(){
   const SK = {
-    counter:'asterium_counter', visitors:'asterium_visitors',
-    clients:'asterium_clients', startTime:'asterium_start',
-    lastUpdate:'asterium_last', hash:'asterium_hash'
+    counter:'auz_counter', visitors:'auz_visitors',
+    clients:'auz_clients', startTime:'auz_start',
+    lastUpdate:'auz_last', hash:'auz_hash'
   };
-  const SALT = 'asterium_salt_2026';
+  const SALT = 'auz_salt_2026_secure';
 
   function genHash(v){
     let h=0; const s=String(v)+SALT;
@@ -14,7 +14,8 @@
 
   function save(v,c,s){
     const n=Date.now();
-    const d={visitors:v,clients:c,startTime:s,lastUpdate:n,hash:genHash(v+'|'+c+'|'+s)};
+    const d={visitors:v,clients:c,startTime:s,lastUpdate:n,
+      hash:genHash(v+'|'+c+'|'+s)};
     try{
       localStorage.setItem(SK.counter,JSON.stringify(d));
       localStorage.setItem(SK.visitors,String(v));
@@ -29,20 +30,29 @@
   function load(){
     try{
       const data=localStorage.getItem(SK.counter);
-      if(data){ const p=JSON.parse(data);
-        if(p.hash===genHash(p.visitors+'|'+p.clients+'|'+p.startTime)) return p; }
+      if(data){
+        const p=JSON.parse(data);
+        if(p.hash===genHash(p.visitors+'|'+p.clients+'|'+p.startTime)) return p;
+      }
       const sd=sessionStorage.getItem(SK.counter);
-      if(sd){ const p=JSON.parse(sd);
-        if(p.hash===genHash(p.visitors+'|'+p.clients+'|'+p.startTime)) return p; }
+      if(sd){
+        const p=JSON.parse(sd);
+        if(p.hash===genHash(p.visitors+'|'+p.clients+'|'+p.startTime)) return p;
+      }
     }catch(e){}
     return null;
   }
 
-  let st=load(); const now=Date.now();
-  if(!st){ st={visitors:119800,clients:36,startTime:now,lastUpdate:now,
-    hash:genHash(119800+'|'+36+'|'+now)}; save(st.visitors,st.clients,st.startTime); }
+  let st=load();
+  const now=Date.now();
+  if(!st){
+    st={visitors:119800,clients:36,startTime:now,lastUpdate:now,
+      hash:genHash(119800+'|'+36+'|'+now)};
+    save(st.visitors,st.clients,st.startTime);
+  }
 
-  let visitors=st.visitors, clients=st.clients;
+  let visitors=st.visitors;
+  let clients=st.clients;
   const startTime=st.startTime;
 
   function updateCounter(){
@@ -50,12 +60,20 @@
     visitors=119800+Math.floor((n-startTime)/1000)*3;
     clients=36+Math.floor(Math.floor((n-startTime)/60000)/10);
 
-    document.querySelectorAll('.counter-visitors').forEach(el=>el.textContent=visitors.toLocaleString());
-    document.querySelectorAll('.counter-clients').forEach(el=>el.textContent=clients.toLocaleString());
+    document.querySelectorAll('.counter-visitors').forEach(el=>{
+      el.textContent=visitors.toLocaleString();
+    });
+    document.querySelectorAll('.counter-clients').forEach(el=>{
+      el.textContent=clients.toLocaleString();
+    });
 
     const ts=new Date(n).toISOString().replace('T',' ').slice(0,19)+' UTC';
-    document.querySelectorAll('.counter-visitor-time').forEach(el=>el.textContent='Updated: '+ts);
-    document.querySelectorAll('.counter-client-time').forEach(el=>el.textContent='Verified: '+ts);
+    document.querySelectorAll('.counter-visitor-time').forEach(el=>{
+      el.textContent='Updated: '+ts;
+    });
+    document.querySelectorAll('.counter-client-time').forEach(el=>{
+      el.textContent='Verified: '+ts;
+    });
 
     if(n-st.lastUpdate>10000){
       save(visitors,clients,startTime);
@@ -79,9 +97,10 @@
       "@context":"https://schema.org",
       "@type":"WebSite",
       "name":"Asterium — Ecosystem of HUMO Token & AUZ",
-      "description":"Asterium is the infrastructure partner of HUMO Token. Gold-backed AUZ: 1 AUZ = 0.0001 g gold. Solana Token-2022.",
+      "description":"Asterium — ecosystem of HUMO Token (USD-backed stable token) and AUZ (gold-backed token). Solana Token-2022.",
       "statistics":{
-        "visitors":visitors,"clients":clients,
+        "visitors":visitors,
+        "clients":clients,
         "startDate":new Date(startTime).toISOString(),
         "lastUpdate":new Date(n).toISOString(),
         "growthRate":"3 visitors per second",
@@ -89,7 +108,7 @@
       },
       "additionalProperty":[
         {"@type":"PropertyValue","name":"counterHash","value":hash},
-        {"@type":"PropertyValue","name":"verificationMethod","value":"multi-source"}
+        {"@type":"PropertyValue","name":"verificationMethod","value":"multi-source (localStorage + sessionStorage)"}
       ]
     });
 
@@ -111,13 +130,22 @@
     if(e.key===SK.visitors){
       const nv=parseInt(e.newValue);
       const nc=parseInt(localStorage.getItem(SK.clients));
-      if(nv>visitors){ visitors=nv; clients=nc; updateCounter(); }
+      if(nv>visitors){
+        visitors=nv;
+        clients=nc;
+        updateCounter();
+      }
     }
   });
-  window.addEventListener('beforeunload',function(){ save(visitors,clients,startTime); });
+
+  window.addEventListener('beforeunload',function(){
+    save(visitors,clients,startTime);
+  });
 
   updateMetadata(visitors,clients,startTime);
   updateCounter();
   setInterval(updateCounter,1000);
-  setInterval(function(){ updateMetadata(visitors,clients,startTime); },600000);
+  setInterval(function(){
+    updateMetadata(visitors,clients,startTime);
+  },600000);
 })();
