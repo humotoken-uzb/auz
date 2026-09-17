@@ -165,52 +165,68 @@
   <div class="container">
     <h2 data-i18n="buy_title">How to buy $AUZ</h2>
     <p class="section-lead" data-i18n="buy_lead">
-      Two simple steps: buy USDC with your local currency, then swap it for AUZ on Solana.
+      Two ways to get USDC on Solana: through a crypto exchange, or with cash via Paynet kiosks.
     </p>
 
-    <!-- STEP 1 -->
-    <div class="buy-step">
-      <div class="buy-step-num">1</div>
-      <div class="buy-step-body">
-        <h3 data-i18n="buy_step1_title">Buy USDC with your local currency</h3>
-        <div class="buy-currencies">
-          <a href="https://t.me/wallet" target="_blank" rel="noopener" class="currency-btn">
-            <span class="flag">🇺🇿</span><span class="code">UZS</span>
-          </a>
-          <a href="https://www.binance.com/ru-KZ" target="_blank" rel="noopener" class="currency-btn">
-            <span class="flag">🇰🇿</span><span class="code">KZT</span>
-          </a>
-          <a href="https://www.binance.com" target="_blank" rel="noopener" class="currency-btn">
-            <span class="flag">🇰🇬</span><span class="code">KGS</span>
-          </a>
-          <a href="https://www.bybit.com" target="_blank" rel="noopener" class="currency-btn">
-            <span class="flag">🇹🇯</span><span class="code">TJS</span>
-          </a>
-          <a href="https://www.moonpay.com/buy/usdc" target="_blank" rel="noopener" class="currency-btn">
-            <span class="flag">🇺🇸</span><span class="code">USD</span>
-          </a>
-          <a href="https://www.moonpay.com/buy/usdc" target="_blank" rel="noopener" class="currency-btn">
-            <span class="flag">🇪🇺</span><span class="code">EUR</span>
-          </a>
-        </div>
+    <!-- METHOD 1: PAYNET -->
+    <div class="buy-method">
+      <div class="buy-method-header">
+        <span class="buy-method-badge" data-i18n="buy_method_cash">Cash</span>
+        <h3 data-i18n="buy_paynet_title">Method 1 — Buy with cash at a Paynet kiosk</h3>
+      </div>
+      <ol class="paynet-steps">
+        <li data-i18n="buy_paynet_step1">Go to any <strong>Paynet kiosk</strong> near you (over 16,000 terminals).</li>
+        <li data-i18n="buy_paynet_step2">Select the section <strong>«CityPay — purchase of crypto assets at info kiosks»</strong>.</li>
+        <li data-i18n="buy_paynet_step3">Scan the QR code using the <strong>Paynet mobile app</strong>.</li>
+        <li data-i18n="buy_paynet_step4">Top up your Paynet card with <strong>200,000 UZS</strong> (or from 30,000 UZS).</li>
+        <li data-i18n="buy_paynet_step5">In the Paynet app, convert your UZS balance to <strong>SOL (Solana)</strong>.</li>
+        <li data-i18n="buy_paynet_step6">Send the SOL to your <strong>Jupiter wallet</strong>.</li>
+        <li data-i18n="buy_paynet_step7">Open <strong>Jupiter Swap</strong> and exchange your SOL for <strong>AUZ</strong>.</li>
+      </ol>
+      <div class="paynet-note">
+        <span data-i18n="buy_paynet_note">💡 Commission: 2% (included in the amount). Rate is fixed for 30 seconds at the kiosk.</span>
+      </div>
+      <div class="swap-buttons">
+        <a href="https://jup.ag/swap/SOL-BNC8P5oyXMnAQcqVv2nrhNwFtBTMq1nckZdV9F2R9eZp" target="_blank" rel="noopener" class="btn btn-gold">⚡ Open Jupiter Swap (SOL → AUZ)</a>
       </div>
     </div>
 
-    <!-- STEP 2 -->
-    <div class="buy-step">
-      <div class="buy-step-num">2</div>
-      <div class="buy-step-body">
-        <h3 data-i18n="buy_step2_title">Swap USDC for AUZ</h3>
-        <div class="swap-buttons">
-          <a href="https://jup.ag/swap/USDC-BNC8P5oyXMnAQcqVv2nrhNwFtBTMq1nckZdV9F2R9eZp"
-             target="_blank" rel="noopener" class="btn btn-gold" data-i18n="buy_swap_auz">
-            ⚡ Swap USDC → AUZ
-          </a>
-          <a href="https://www.geckoterminal.com/solana/pools/3Dc5bscT14v8i6F8xbNkfCFDVJuhyBYGVNYX1o4xNBo8"
-             target="_blank" rel="noopener" class="btn btn-outline" data-i18n="buy_chart">
-            📊 View chart
-          </a>
-        </div>
+    <!-- METHOD 2: EXCHANGE -->
+    <div class="buy-method">
+      <div class="buy-method-header">
+        <span class="buy-method-badge" data-i18n="buy_method_card">Card / Bank</span>
+        <h3 data-i18n="buy_exchange_title">Method 2 — Buy USDC with your local currency</h3>
+      </div>
+      <div class="buy-currencies">
+        <a href="https://p2p.binance.com/en/trade/all-payments/USDC?fiat=UZS" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇺🇿</span><span class="code">UZS (Binance P2P)</span>
+        </a>
+        <a href="https://www.bitget.com/ru/p2p" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇺🇿</span><span class="code">UZS (Bitget P2P)</span>
+        </a>
+        <a href="https://t.me/wallet" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇺🇿</span><span class="code">UZS (Wallet)</span>
+        </a>
+        <a href="https://www.binance.com/ru-KZ" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇰🇿</span><span class="code">KZT</span>
+        </a>
+        <a href="https://www.binance.com" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇰🇬</span><span class="code">KGS</span>
+        </a>
+        <a href="https://www.bybit.com" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇹🇯</span><span class="code">TJS</span>
+        </a>
+        <a href="https://www.moonpay.com/buy/usdc" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇺🇸</span><span class="code">USD</span>
+        </a>
+        <a href="https://www.moonpay.com/buy/usdc" target="_blank" rel="noopener" class="currency-btn">
+          <span class="flag">🇪🇺</span><span class="code">EUR</span>
+        </a>
+      </div>
+      <div class="buy-step-note" data-i18n="buy_exchange_note">After buying USDC, swap it for AUZ on Jupiter.</div>
+      <div class="swap-buttons">
+        <a href="https://jup.ag/swap/USDC-BNC8P5oyXMnAQcqVv2nrhNwFtBTMq1nckZdV9F2R9eZp" target="_blank" rel="noopener" class="btn btn-gold">⚡ Swap USDC → AUZ</a>
+        <a href="https://www.geckoterminal.com/solana/pools/3Dc5bscT14v8i6F8xbNkfCFDVJuhyBYGVNYX1o4xNBo8" target="_blank" rel="noopener" class="btn btn-outline">📊 View chart</a>
       </div>
     </div>
 
@@ -242,10 +258,6 @@
         </div>
         <div class="other-token-actions">
           <a href="https://humotoken-uzb.github.io/humo/" class="btn btn-primary" data-i18n="buy_visit_humo">Visit HUMO site</a>
-          <a href="https://jup.ag/swap/USDC-HK37Dqw9Cjhk2wPjfNqB1sU6aFQLCU7cuwEoUgq5C5NU"
-             target="_blank" rel="noopener" class="btn btn-outline" data-i18n="buy_swap_humo">
-            ⚡ Swap to HUMO
-          </a>
         </div>
       </div>
     </div>
@@ -422,4 +434,4 @@
 </script>
 
 </body>
-</html>
+          </html>
